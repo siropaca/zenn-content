@@ -9,7 +9,7 @@ published: true
 Web 関連の技術革新が目覚ましい一方で、クライアント側であるブラウザの進化も目覚ましいものがあります。
 この記事では、2024年にエンジニアとして知っておきたいデスクトップブラウザについてまとめて紹介します。
 
-## デスクトップブラウザ
+## 王道ブラウザ
 
 ### Google Chrome
 
@@ -208,6 +208,8 @@ CPU、RAM、ネットワークの使用量を制限するなど機能を搭載�
 
 https://www.opera.com/ja/gx
 
+## その他ブラウザ
+
 ### Vivaldi
 
 ![Vivaldi](/images/2024-browsers/vivaldi.jpg)
@@ -347,7 +349,7 @@ https://duckduckgo.com/
 - 初版
   - 不明
 - エンジン
-  - Quantum (Gecko / SpiderMonkey)
+  - `Quantum` (Gecko / SpiderMonkey)
 - 対応OS
   - `Windows`
   - `macOS`
