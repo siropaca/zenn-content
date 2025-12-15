@@ -24,9 +24,11 @@ published: false
 
 ### やりたかったこと
 
-- RSS フィードから記事を自動収集
-- AI が記事を分析・要約・カテゴリ分類
+- RSS フィードや X から記事・ポストを自動収集
+  - 情報を正規化して DB に蓄積 
+- AI による分析・要約・カテゴリ分類（海外記事は翻訳も）
 - 数時間ごとに Discord へダイジェストを投稿
+  - プロンプトに応じて AI が記事を選別して要約
 
 ### 技術構成
 
@@ -39,8 +41,6 @@ published: false
 | 開発支援             | Claude Desktop <br/> MCP（Supabase MCP, n8n MCP） |
 
 ![architecture.png](/images/n8n-tech-news-collector/architecture.png)
-
----
 
 ## アーキテクチャ設計
 
