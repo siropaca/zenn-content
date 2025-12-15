@@ -8,20 +8,18 @@ published: false
 
 ## はじめに
 
-今更ながら n8n の環境を構築したので、手始めに技術系の情報収集を自動化するシステムを作ってみました。その備忘録を残します。
+今更ながら n8n の環境を構築してみて、手始めに技術系の情報収集を自動化するシステムを作ってたので、その備忘録を残します。
 
-今までは Inoreader で様々なサイトの RSS を追っていたのですが、未読が溜まり続けて情報収集疲れを起こしていました。「全部読まなきゃ」というプレッシャーから解放されたくて、AI に要約・選定を任せる仕組みを作ることにしました。
+私は普段 web 系の開発をしていて、 技術系のアップデートやブログ、最近では AI 系のアップデートをサイトや x などでキャッチアップしています。
+今までそういったキャッチアップは RSS Reader である [Inoreader](https://www.inoreader.com/ja/) を使って、で様々なサイトの RSS を追っていたのですが、気づくと未読が数百件みたいになっていて情報収集疲れを起こしていました。
+正直、その記事を選別、記事を読むことに疲れてきていました。
 
-結果として、数時間ごとに Discord へダイジェストが届くようになり、情報収集がかなり楽になりました。
+そこで、せっかく n8n の環境を作ってみたので、溢れている技術情報を AI に自分の思考に合わせて選別、要約してもらって定期的に Discord　に送ってもらうようにしました。
+このシステムを作ったことにより、いままで頑張って追っていた情報が定期的に AI がキュレーションしてプッシュされてくるので、情報収集が楽になりました。
 
-![discord-post.png](../images/n8n-tech-news-collector/discord-post.png)
+Discord に届くメッセージ（frontend に関するトピック） ↓
 
-### この記事で話さないこと
-
-- n8n の詳しい説明
-- DB の設計
-
----
+![Discord の配信](/images/n8n-tech-news-collector/discord-post.png)
 
 ## システム概要
 
@@ -41,7 +39,7 @@ published: false
 | 分析・要約・キュレーション | OpenAI API                                      |
 | 開発支援             | Claude Desktop <br/> MCP（Supabase MCP, n8n MCP） |
 
-![architecture.png](../images/n8n-tech-news-collector/architecture.png)
+![architecture.png](/images/n8n-tech-news-collector/architecture.png)
 
 ---
 
@@ -70,7 +68,7 @@ published: false
 
 RSS フィードを取得してサブワークフローに渡すメインワークフローです。
 
-![fetch-rss.png](../images/n8n-tech-news-collector/fetch-rss.png)
+![fetch-rss.png](/images/n8n-tech-news-collector/fetch-rss.png)
 
 ### ポイント
 
@@ -89,7 +87,7 @@ n8n の Split In Batches（ループ処理）はネストできない制約が�
 
 記事を1件ずつ処理し、AI で分析して DB に保存するサブワークフローです。
 
-![process-rss-articles.png](../images/n8n-tech-news-collector/process-rss-articles.png)
+![process-rss-articles.png](/images/n8n-tech-news-collector/process-rss-articles.png)
 
 ### ポイント
 
@@ -119,7 +117,7 @@ OpenAI API を使って、以下の情報を抽出・生成しています。
 
 DB から記事を取得し、AI でダイジェストを生成して Discord に配信するワークフローです。カテゴリごとにワークフローを分けています。
 
-![send-ai-ml.png](../images/n8n-tech-news-collector/send-ai-ml.png)
+![send-ai-ml.png](/images/n8n-tech-news-collector/send-ai-ml.png)
 
 ### ポイント
 
@@ -146,7 +144,7 @@ AI エージェントと外部 API の連携がクラウドレベルで整って
 
 トレンド要約では、絵文字を控えめに添えたり、英語と日本語の間にスペースを入れたりと、読みやすさを意識したスタイルにしています。
 
-![discord-post.png](../images/n8n-tech-news-collector/discord-post.png)
+![discord-post.png](/images/n8n-tech-news-collector/discord-post.png)
 
 ---
 
@@ -179,6 +177,8 @@ Claude Desktop + MCP を活用して、設計・DB 構築・レビューをで�
 ## 今後の拡張
 - プロンプトのチューニング
 - 配信状況を管理する
+- トレンドの判定
+- 情報源に x を追加する
 
 ---
 
