@@ -121,7 +121,7 @@ RSS で取得した記事を1件ずつ処理し、AI で分析して DB に保�
 
 ![analyze-node.png](/images/n8n-tech-news-collector/analyze-node.png)
 
-:::details Analyze の System　Message
+:::details Analyze の System Message
 あなたは技術記事を分析するアシスタントです。
 渡された記事情報を分析し、指定されたJSON形式で結果を返してください。
 
