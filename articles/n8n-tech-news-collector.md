@@ -123,9 +123,9 @@ RSS で取得した記事を1件ずつ処理し、AI で分析して DB に保�
 
 <details>
   <summary>詳細を見る</summary>
-```
+<code>
 aaaa
-```
+</code>
 </details>
 
 ### DB スキーマ
