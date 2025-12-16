@@ -16,7 +16,9 @@ published: false
 そこで、せっかく n8n の環境を作ってみたので、溢れている技術情報を AI に自分の興味に合わせて選別・要約してもらい、定期的に Discord に送ってもらうようにしました。
 このシステムを作ったことで、今まで頑張って追っていた情報が定期的に AI がキュレーションしてプッシュされてくるようになり、情報収集が楽になりました。
 
-### 例：フロントエンドに関するトピック（6数時間ごとに Discord に届くように設定）
+### 例：フロントエンドに関するトピック
+
+以下のような投稿が6数時間ごとに Discord に届くように設定
 
 ![Discord の配信](/images/n8n-tech-news-collector/discord-post.png)
 
@@ -66,7 +68,7 @@ published: false
 ## Tech News Collector - Fetch RSS
 
 まずは、記事を収集する Input の処理です。  
-RSS フィードを取得して各記事を処理するサブワークフローに渡すメインワークフローです。（30分ごとに実行しています）
+RSS フィードを取得して各記事を処理するサブワークフローに渡すメインワークフローです。（30分ごとに実行）
 
 ![fetch-rss.png](/images/n8n-tech-news-collector/fetch-rss.png)
 
@@ -94,7 +96,9 @@ RSS で取得した記事を1件ずつ処理し、AI で分析して DB に保�
 
 - guid で重複スキップ
   - RSS の guid を使って、同じ記事を二重登録しないようにしています
-  - たまに guid がない RSS があるので `Normalize RSS Data` で必ず guid を持つように正規化しています
+- フィードの内容を正規化 
+  - サイトごとにフィードのプロパティがばらばらなので `Normalize RSS Data` で必ず同じ構造になるように変換
+  - guid もなければ、ここで生成しています
 - AI 分析
   - タイトル翻訳、要約生成、キーワード抽出、カテゴリ分類を一括処理しています
 - テストモード
@@ -116,6 +120,13 @@ RSS で取得した記事を1件ずつ処理し、AI で分析して DB に保�
 プロンプトでは、要約のスタイル（ですます調、メタ表現禁止など）やカテゴリの選択ルールを細かく指定しています。
 
 ![analyze-node.png](/images/n8n-tech-news-collector/analyze-node.png)
+
+<details>
+  <summary>詳細を見る</summary>
+```
+aaaa
+```
+</details>
 
 ### DB スキーマ
 
